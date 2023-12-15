@@ -9,10 +9,13 @@ Security: Using microservices we can separate our users to ensure only relevant 
 
 # Architecture diagram
 ![carpool](https://github.com/suicopath/ETIAssg1/assets/84904561/4aecb194-a919-413a-bbf6-64dc34074c7e)
+In our current design, we have a console front-end which can be accessed through our API gateway. Using REST API, users can access our services separated into different micro services. We have a microservice dedicated to Passengers and 
 
 # Instructions for setting up and running your microservices
 Download the files in the repository.
 1. Run carpoolserver.go
-2. Run carpoolclient.go
+2. Run carpoolclient.go in a separate window.
 3. Open the Command Prompt, and enter the curl statement.
-4. 
+4. The UI should appear in the carpoolserver terminal.
+5. To select a category, enter the corresponding number.
+6. Multiple options should appear. Select the option you need by entering the corresponding number.
