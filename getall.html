@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Passenger Data</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+   
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+  
+  </style>
+</head>
+<body>
+  <ul>
+    <li>
+      <a href="#">Passenger</a>
+      <ul>
+        <li><a href="#">All passengers</a></li>
+        <li><a href="#">Passenger profile</a></li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Remove Account</a></li>
+      </ul>
+    </li>
+  </ul>
+  <div class="button-row">
+    <button class="button" onclick="showAllPassengers()">Show All Passengers</button>
+    <button class="button" onclick="showAllCars()">Show All cars</button>
+    <button class="button" onclick="showAllTrips()">Show All Trips</button>
+    <button class="button" onclick="showAllTripnPassengers()">Show All Trips and Passenger</button>
+  </div>
+    <script>
+  
+    function showAllPassengers() {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'http://localhost:5000/api/v1/carpool/passenger', true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          const jsonData = JSON.parse(xhr.responseText);
+
+          const table = document.createElement('table');
+          const thead = document.createElement('thead');
+          const tbody = document.createElement('tbody');
+
+          // Create table header
+          const headerRow = document.createElement('tr');
+          for (const key in jsonData.Passenger[1]) {
+            const th = document.createElement('th');
+            th.textContent = key;
+            headerRow.appendChild(th);
+          }
+          thead.appendChild(headerRow);
+          table.appendChild(thead);
+
+          // Create table rows
+          for (const passenger of Object.values(jsonData.Passenger)) {
+            const row = document.createElement('tr');
+            for (const value of Object.values(passenger)) {
+              const td = document.createElement('td');
+              td.textContent = value;
+              row.appendChild(td);
+            }
+            tbody.appendChild(row);
+          }
+          table.appendChild(tbody);
+
+          // Append table to the page
+          document.body.appendChild(table);
+        } else {
+          console.log('Request failed.  Returned status of ' + xhr.status);
+        }
+      }
+      xhr.send();
+    };
+   
+    function showAllCars() {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'http://localhost:5000/api/v1/carpool/car', true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          const jsonData = JSON.parse(xhr.responseText);
+
+          const table = document.createElement('table');
+          const thead = document.createElement('thead');
+          const tbody = document.createElement('tbody');
+
+          // Create table header
+          const headerRow = document.createElement('tr');
+          for (const key in jsonData.Passenger[1]) {
+            const th = document.createElement('th');
+            th.textContent = key;
+            headerRow.appendChild(th);
+          }
+          thead.appendChild(headerRow);
+          table.appendChild(thead);
+
+          // Create table rows
+          for (const carowner of Object.values(jsonData.CarOwner)) {
+            const row = document.createElement('tr');
+            for (const value of Object.values(CarOwner)) {
+              const td = document.createElement('td');
+              td.textContent = value;
+              row.appendChild(td);
+            }
+            tbody.appendChild(row);
+          }
+          table.appendChild(tbody);
+
+          // Append table to the page
+          document.body.appendChild(table);
+        } else {
+          console.log('Request failed.  Returned status of ' + xhr.status);
+        }
+      }
+      xhr.send();
+    };
+   
+  </script>
+</body>
+</html>
