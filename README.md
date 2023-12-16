@@ -9,7 +9,7 @@ Security: Using microservices we can separate our users to ensure only relevant 
 
 # Architecture diagram
 ![carpool](https://github.com/suicopath/ETIAssg1/assets/84904561/4aecb194-a919-413a-bbf6-64dc34074c7e)
-In our current design, we have a console front-end which can be accessed through our API gateway. Using REST API, users can access our services separated into different micro services. We have microservices dedicated to Passengers and Carowners,as well as another for storing trips. Each microservice is has their own data so there is miimal risk of data leakage.
+In our current design, we have a console front-end which can be accessed through our API gateway. Using REST API, users can access our services separated into different micro services. We have microservices dedicated to Passengers and Car Owners, as well as another for storing Trips. Each microservice has their own data so there is minimal risk of data leakage.
 
 # Instructions for setting up and running the microservices
 Download the files in the repository.
@@ -23,3 +23,4 @@ Download the files in the repository.
 8. Fill in the information required by the program.
 9. When you are done, press 9 to exit the program.
 
+Note: As this program uses the PUT method to update records, please enter ALL information edited or otherwise.
