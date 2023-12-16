@@ -10,8 +10,6 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	//"strings"
-	//"time"
 )
 //Struct for Passenger
 type Passenger struct {
@@ -42,11 +40,6 @@ type Trip struct {
 	PassengerID     int    `json:"PassengerID"`
 }
 
-/*
-	type Passengers struct {
-		Passengers map[string]Passenger `json:"Passenger"`
-	}
-*/
 type Passengers struct {
 	Passengers map[string]Passenger `json:"Passenger"`
 }
@@ -179,42 +172,6 @@ func createPassenger() {
 
 	}
 }
-
-/*
-func UpdatedCarOwner() {
-// Update CarOWner
-fmt.Print("LicenseNo: ")
-scanner.Scan()
-carowner.LicenseNo = scanner.Text()
-fmt.Print("Car Plate No: ")
-scanner.Scan()
-carowner.CarPlateNo = scanner.Text()
-fmt.Print("Max passenger: ")
-scanner.Scan()
-carowner.Maxpassenger, _ = strconv.Atoi(scanner.Text())
-fmt.Print("Car color: ")
-scanner.Scan()
-carowner.Carcolor = scanner.Text()
-fmt.Print("Year Release: ")
-scanner.Scan()
-carowner.YearRel, _ = strconv.Atoi(scanner.Text())
-carowner.PassengerID = passenger.PassengerID
-
-carpostBody, _ := json.Marshal(carowner)
-carresBody := bytes.NewBuffer(carpostBody)
-
-client := &http.Client{}
-
-	if req, err := http.NewRequest(http.MethodPost, "http://localhost:5000/api/v1/carpool/car/"+passengerID, carresBody); err == nil {
-		if res, err := client.Do(req); err == nil {
-			if res.StatusCode == 202 {
-				fmt.Println("CarOwner", passengerID, "created Car Owner successfully")
-			}
-		}
-	}
-
-}
-*/
 
 //function to update a passenger record
 func updatePassenger() {
@@ -599,12 +556,6 @@ func createTrip() {
 	scanner.Scan()
 	passengerID = scanner.Text()
 	trip.PassengerID, _ = strconv.Atoi(passengerID)
-	/*
-		fmt.Print("Enter the Trip ID to be created: ")
-		scanner.Scan()
-		tripID = scanner.Text()
-		trip.TripRef, _ = strconv.Atoi(tripID)
-	*/
 	fmt.Print("Start Trip Date/Time: (yyyy-mm-dd hh:mm:ss) ")
 	scanner.Scan()
 	trip.StartTrip = scanner.Text()
