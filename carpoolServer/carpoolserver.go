@@ -575,139 +575,6 @@ func updateCarOwner(id string, c CarOwner) {
 	}
 }
 
-// SELECT * FROM trip inner join passenger on trip.passengerID = passenger.passengerID;
-//SELECT * FROM trip inner join passenger on trip.passengerID = passenger.passengerID Join Carowner on passenger.passengerID = carowner.passengerID;
-// Get all trip information
-
-/*
-func alltrip(w http.ResponseWriter, r *http.Request) {
-	println("Alltrip")
-	// query := r.URL.Query()
-	// curl http://localhost:5000/api/v1/carpool/trip
-	println("Query")
-
-
-	db, _ := sql.Open("mysql", "user:password@tcp(127.0.0.1:3306)/carpool")
-	// results, err := db.Query("SELECT * FROM trip inner join passenger on trip.passengerID = passenger.passengerID Join Carowner on passenger.passengerID = carowner.passengerID;")
-	results, err := db.Query("SELECT * FROM trip inner join passenger on trip.passengerID = passenger.passengerID")
-	if err != nil {
-		panic(err.Error())
-	}
-
-	var count int = 0;
-	var passengers []Passenger
-	var trips []Trip
-
-	// var carowners map[int]CarOwner = map[int]CarOwner{}
-	//var courses[] Course
-	for results.Next() {
-		var t Trip
-		var p Passenger
-		//var id string
-		_ = results.Scan(&p.PassengerID, &p.FirstName, &p.LastName, &p.PhoneNo, &p.Email, &t.PassengerID, &t.PickupAddr, &t.AlterPickupAddr, &t.DestinationAddr, &t.MaxPassenger, &t.StartTrip, &t.TripRef)
-		count += 1
-		fmt.Println(p.FirstName)
-		passengers = append(passengers, p)
-		trips = append(trips, t)
-
-		println("count= ", count)
-		println("p.passengers[count-1].PassengerID= ", passengers[count-1].PassengerID)
-		println("p.passengers[count-1].firstname= ", passengers[count-1].FirstName)
-		println("p.passengers[count-1].PassengerID= ", passengers[count-1].LastName)
-		println("p.passengers[count-1].PassengerID= ", passengers[count-1].PhoneNo)
-		println("p.passengers[count-1].PassengerID= ", passengers[count-1].Email)
-		println("trips[count-1].PassengerID= ", trips[count-1].PassengerID)
-		println("trips[count-1].PickupAddr= ", trips[count-1].PickupAddr)
-		println("trips[count-1].AlterPickupAddr= ", trips[count-1].AlterPickupAddr)
-		println("trips[count-1].DestinationAddr= ", trips[count-1].DestinationAddr)
-		println("trips[count-1].MaxPassenger= ", trips[count-1].MaxPassenger)
-		fmt.Println("trips[count-1].StartTrip= ", trips[count-1].StartTrip)
-		println("trips[count-1].TripRef= ", trips[count-1].TripRef)
-	}
-	fmt.Println(count, " Records found")
-	passengerWrapper := struct {
-		Passengers map[int]Passenger `json:"Passenger"`
-	}{getPassenger()}
-
-	jsonBytes, err := json.Marshal(passengerWrapper)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println(string(jsonBytes))
-
-	defer db.Close()
-
-}
-
-*/
-
-/*
-func alltrip(w http.ResponseWriter, r *http.Request) {
-	println("Alltrip")
-	//query := r.URL.Query()
-	// curl http://localhost:5000/api/v1/carpool/trip
-	println("Query")
-
-	db, _ := sql.Open("mysql", "user:password@tcp(127.0.0.1:3306)/carpool")
-	// results, err := db.Query("SELECT * FROM trip inner join passenger on trip.passengerID = passenger.passengerID Join Carowner on passenger.passengerID = carowner.passengerID;")
-	results, err := db.Query("SELECT * FROM trip inner join passenger on trip.passengerID = passenger.passengerID")
-	if err != nil {
-		panic(err.Error())
-	}
-
-	var count int = 0
-	var trippassengers []TripPassenger
-
-	for results.Next() {
-		var tp TripPassenger
-		//var id string
-		//_ = results.Scan(&tp.PassengerID, &tp.FirstName, &tp.LastName, &tp.PhoneNo, &tp.Email, &tp.PickupAddr, &tp.AlterPickupAddr, &tp.DestinationAddr, &tp.StartTrip, &tp.MaxPassenger, &tp.TripRef)
-		_ = results.Scan(&tp.TripRef, &tp.PickupAddr, &tp.PassengerID)
-
-		println("tp.TripRef= ",tp.TripRef)
-		println("tp.TripRef= ",tp.PickupAddr)
-		println("tp.PassengerID= ",tp.PassengerID)
-		println("tp.FirstName= ", tp.FirstName)
-		println("tp.LastName= ", tp.LastName)
-
-
-		trippassengers = append(trippassengers, tp)
-
-		println("count= ", count)
-		println("tp.passengers[count].PassengerID= ", trippassengers[count].PassengerID)
-		println("tp.passengers[count].firstname= ", trippassengers[count].FirstName)
-		println("tp.passengers[count].PassengerID= ", trippassengers[count].LastName)
-		println("tp.passengers[count].PassengerID= ", trippassengers[count].PhoneNo)
-		println("tp.passengers[count-1].PassengerID= ", trippassengers[count].Email)
-		println("trippassengers[count-1].AlterPickupAddr= ", trippassengers[count].AlterPickupAddr)
-		println("trippassengers[count-1].DestinationAddr= ", trippassengers[count].DestinationAddr)
-		println("trippassengers[count-1].PickupAddr= ", trippassengers[count].PickupAddr)
-		fmt.Println("trippassengers[count-1].StartTrip= ", trippassengers[count].StartTrip)
-		println("trippassengers[count-1].MaxPassenger= ", trippassengers[count].MaxPassenger)
-		println("trippassengers[count-1].TripRef= ", trippassengers[count].TripRef)
-		count += 1
-	}
-	fmt.Println(count, " Records found")
-	// carWrapper := struct {
-	// 	Carowners map[int]CarOwner `json:"CarOwner"`
-	// }{carowners}
-
-	jsonBytes, err := json.Marshal(trippassengers)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println(string(jsonBytes))
-
-	//json.NewEncoder(w).Encode(carWrapper)
-
-	defer db.Close()
-
-}
-
-*/
-
 //function displays all trip instances in the database
 func alltrip(w http.ResponseWriter, r *http.Request) {
 	println("Alltrip")
@@ -723,17 +590,12 @@ func alltrip(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var count int = 0
-	//var passengers []Passenger
-	// var trips []Trip
+	
 	var trips map[int]Trip = map[int]Trip{}
-	// var carowners map[int]CarOwner = map[int]CarOwner{}
-	//var courses[] Course
+	
 	for results.Next() {
 		var t Trip
 
-		//var p Passenger
-		//var id string
-		//_ = results.Scan(&t.TripRef, &t.PickupAddr, &t.AlterPickupAddr, &t.StartTrip, &t.DestinationAddr, &t.MaxPassenger, &t.PassengerID)
 		_ = results.Scan(&t.TripRef, &t.PickupAddr, &t.AlterPickupAddr, &t.StartTrip, &t.DestinationAddr, &t.MaxPassenger, &t.PassengerID)
 
 		count += 1
@@ -742,9 +604,6 @@ func alltrip(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(trips[count].PickupAddr)
 		fmt.Println(trips[count].StartTrip)
 		fmt.Println(trips[count].MaxPassenger)
-		//passengers = append(passengers, p)
-
-		// trips[count] = Trip{TripRef: t.TripRef, PickupAddr: t.PickupAddr, AlterPickupAddr: t.AlterPickupAddr, StartTrip: t.StartTrip, DestinationAddr: t.DestinationAddr, MaxPassenger: t.MaxPassenger, PassengerID: t.PassengerID}
 	}
 
 	fmt.Println(count, " Records found")
